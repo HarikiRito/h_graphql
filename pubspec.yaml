@@ -11,13 +11,13 @@ dependencies:
   graphql_flutter: 5.0.1-beta.2
   flutter:
     sdk: flutter
-  artemis:
-    path: ../artemis
 
 dependency_overrides:
   gql_exec: 0.3.0
 
 dev_dependencies:
+  artemis:
+    path: ../artemis
   flutter_test:
     sdk: flutter
   flutter_lints: ^1.0.0

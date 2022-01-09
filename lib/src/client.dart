@@ -20,40 +20,46 @@ class HGraphQLClient extends GraphQLClient {
           alwaysRebroadcast: alwaysRebroadcast,
         );
 
-  Future<HQueryResult<T>> hQuery<T, U extends JsonSerializable>(
-      {required GraphQLQuery<T, U> query, PartialQueryOptions? options}) async {
-    final queryResult = await super.query(QueryOptions(
-      document: query.document,
-      variables: query.getVariablesMap(),
-      cacheRereadPolicy: options?.cacheRereadPolicy,
-      context: options?.context,
-      errorPolicy: options?.errorPolicy,
-      fetchPolicy: options?.fetchPolicy,
-      operationName: query.operationName,
-      optimisticResult: options?.optimisticResult,
-      pollInterval: options?.pollInterval,
-    ));
+  Future<HQueryResult<T>> hQuery<T, U extends JsonSerializable>({
+    required GraphQLQuery<T, U> query,
+    PartialQueryOptions? options,
+  }) async {
+    final queryResult = await super.query(
+      QueryOptions(
+        document: query.document,
+        variables: query.getVariablesMap(),
+        cacheRereadPolicy: options?.cacheRereadPolicy,
+        context: options?.context,
+        errorPolicy: options?.errorPolicy,
+        fetchPolicy: options?.fetchPolicy,
+        operationName: query.operationName,
+        optimisticResult: options?.optimisticResult,
+        pollInterval: options?.pollInterval,
+      ),
+    );
 
-    print(query.getVariablesMap());
     return HQueryResult<T>(query: query, queryResult: queryResult);
   }
 
-  Future<HQueryResult<T>> hMutate<T, U extends JsonSerializable>(
-      {required GraphQLQuery<T, U> query,
-      PartialMutateOptions? options}) async {
-    final queryResult = await super.mutate(MutationOptions(
-      document: query.document,
-      variables: query.getVariablesMap(),
-      cacheRereadPolicy: options?.cacheRereadPolicy,
-      context: options?.context,
-      errorPolicy: options?.errorPolicy,
-      fetchPolicy: options?.fetchPolicy,
-      operationName: query.operationName,
-      optimisticResult: options?.optimisticResult,
-      onCompleted: options?.onCompleted,
-      onError: options?.onError,
-      update: options?.update,
-    ));
+  Future<HQueryResult<T>> hMutate<T, U extends JsonSerializable>({
+    required GraphQLQuery<T, U> query,
+    PartialMutateOptions? options,
+  }) async {
+    final queryResult = await super.mutate(
+      MutationOptions(
+        document: query.document,
+        variables: query.getVariablesMap(),
+        cacheRereadPolicy: options?.cacheRereadPolicy,
+        context: options?.context,
+        errorPolicy: options?.errorPolicy,
+        fetchPolicy: options?.fetchPolicy,
+        operationName: query.operationName,
+        optimisticResult: options?.optimisticResult,
+        onCompleted: options?.onCompleted,
+        onError: options?.onError,
+        update: options?.update,
+      ),
+    );
 
     return HQueryResult<T>(query: query, queryResult: queryResult);
   }
