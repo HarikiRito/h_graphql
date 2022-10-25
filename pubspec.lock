@@ -23,7 +23,7 @@ packages:
     source: hosted
     version: "2.3.0"
   artemis:
-    dependency: "direct main"
+    dependency: "direct dev"
     description:
       name: artemis
       url: "https://pub.dartlang.org"
